@@ -1,0 +1,58 @@
+body {
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*NAVBAR*/
+
+.navbar-nav li form {
+  margin-top: 5%;
+}
+
+/*BODY*/
+
+h1,
+h2 {
+  margin: 0;
+}
+
+.apagado {
+  display: none !important;
+}
+
+.edit-movie,
+.login-card {
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 12%;
+  background-color: rgba(133, 133, 133, 0.5);
+
+}
+
+.edit-movie div.card.container,
+.login-card div.card.container{
+  margin: auto;
+  padding: 2%;
+}
+
+h5.description {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  h5.description {
+    flex-direction: row;
+  }
+}

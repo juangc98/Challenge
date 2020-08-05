@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registro</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/paper-kit.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+    <div class="login-card apagado">
+        <%- include('partials/login') %>
+    </div>
+
+    <div class="wrapper">
+        
+        <div class="container">
+            <h1 class="text-center">Registrate y sé parte</h1>
+            <form action="/users/register" method="POST">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" placeholder="Dirección de correo electronico"
+                        name="email">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="password" class="form-control" id="password2" placeholder="Repetí tu contraseña"
+                            name="password2">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Registrarme!</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+<!-- JS  -->
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/popper.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- paper-kit  -->
+<script src="/javascripts/paper-kit.min.js"></script>
+<!-- paper-kit  -->
+<script src="/javascripts/login.js"></script>
+<script src="/javascripts/customs.js"></script>
+
+</html>

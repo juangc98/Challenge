@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mubis</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/paper-kit.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+    <div class="wrapper">
+    <div class="container">
+        <h2 class="text-center">Agregá una pelicula</h2>
+        <form action="/new" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Titulo">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="trailer" name="trailer" placeholder="Link al trailer">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="number" class="form-control" placeholder="Premios" id="awards" name="awards" min="0">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" class="form-control" id="rating" placeholder="Rating" name="rating" min="0.0"
+                        max="10.0" step="0.1">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" class="form-control" id="length" placeholder="Duración en minutos"
+                        name="length" min="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <!-- input with datetimepicker -->
+                <div class="form-group col-md-5">
+                    <input type="string" class="form-control datetimepicker" placeholder="05/08/2020" id="releaseDate" name="releaseDate" />
+                </div>
+                <div class="form-group col-md-5">
+                     <select id="genre" class="form-control" name="genre">
+                         <option selected>Género...</option>
+                         <% for(let e of allGenres){ %> 
+                            <option value="<%= e.id %>"><%= e.name  %> </option>
+                         <% } %> 
+                     </select>
+                </div>
+                <div class="text-center col-md-2">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </div>
+        
+            
+
+        </form>
+    </div>
+    </div>
+</body>
+<!-- JS  -->
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/popper.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- paper-kit  -->
+<script src="/javascripts/paper-kit.min.js"></script>
+<!-- paper-kit  -->
+<script src="/javascripts/customs.js"></script>
+
+</html>
