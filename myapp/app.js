@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const methodOverride = require("method-override");
 const session = require('express-session');
+const log = require('./middlewares/log');
 
 // ROUTERS
 var indexRouter = require('./routes/index');
@@ -26,6 +27,10 @@ app.use(session({
   secret: "Secret session of the challenge project"
 }));
 
+// Middlewares globales
+app.use(log);
+
+//  RUTAS "USE"
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

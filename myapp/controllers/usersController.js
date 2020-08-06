@@ -19,7 +19,7 @@ const usersController = {
             delete newUser.password2;
             db.User.create(newUser)
                 .then(() => {
-                    return res.redirect('/');
+                    return res.redirect('/users/login');
                 })
                 .catch((error) => { console.log(error)});
 
@@ -45,26 +45,26 @@ const usersController = {
                 }
             })
             .then(user => {
-            if (user) {
-                if (bcryptjs.compareSync(req.body.password, user.password)) {
-                    let userSession = user;
-                    delete userSession.dataValues.password;
-                    req.session.user = userSession;
-                    if (req.body.recordame) {
-                        res.cookie("id", userSession.id, {
-                            maxAge: 1000 * 60 * 60 * 24
-                        })
-                    }
-                    return res.redirect('/');
-                } else {
-                    return res.render('login', {
-                        error: 'Usuario y/o contraseña no coinciden'
-                    })
-                }
-            } else {
-                return res.render('login', { error: 'Usuario y/o contraseña no coinciden'})
-            }
-            })
+             if (user) {
+                 if (bcryptjs.compareSync(req.body.password, user.password)) {
+                     let userSession = user;
+                     delete userSession.dataValues.password;
+                     req.session.user = userSession;
+                     if (req.body.recordame) {
+                         res.cookie("id", userSession.id, {
+                             maxAge: 1000 * 60 * 60 * 24
+                         })
+                     }
+                     return res.redirect('/');
+                 } else {
+                     return res.render('login', {
+                         error: 'Usuario y/o contraseña no coinciden'
+                     })
+                 }
+             } else {
+                 return res.render('login', { error: 'Usuario y/o contraseña no coinciden'})
+             }
+             })
       },
 
         logout: function (req, res) {

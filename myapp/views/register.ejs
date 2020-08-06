@@ -15,14 +15,12 @@
 
     <%- include('partials/navbar') %>
 
-    <div class="login-card apagado">
-        <%- include('partials/login') %>
-    </div>
 
     <div class="wrapper">
         
-        <div class="container">
+        <div class="container col-md-6">
             <h1 class="text-center">Registrate y sé parte</h1>
+            <blockquote></blockquote>
             <form action="/users/register" method="POST">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" placeholder="Dirección de correo electronico"
@@ -52,7 +50,6 @@
 <!-- paper-kit  -->
 <script src="/javascripts/paper-kit.min.js"></script>
 <!-- paper-kit  -->
-<script src="/javascripts/login.js"></script>
-<script src="/javascripts/customs.js"></script>
+<script src="/javascripts/custom.js"></script>
 
 </html>

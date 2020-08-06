@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mubis</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/paper-kit.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+
+    <div class="wrapper">
+        <div class="container">
+            <h1>Resultados de tu busqueda: </h1>
+
+            <div class="generos-box row">
+                <% for (let genre of myGenres){ %>
+                <a href="#" class="badge badge-primary"><%= genre.name  %> </a>
+                <% } %>
+            </div>
+            
+
+            <% for (let movie of mySearch){ %>
+            <a href="/movie/<%= movie.id %>">
+                <div class="card card-nav-tabs">
+                    <h5 class="card-header card-header-info">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <%= movie.rating %>
+                    </h5>
+                    <div class="card-body">
+                        <h3 class="card-title"> <%= movie.title  %> </h4>
+                            <p class="card-text">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                <%= movie.genre%>
+                                -
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <%= movie.length %> minutos
+                            </p>
+                    </div>
+                </div>
+            </a>
+            <% } %>
+
+            <blockquote class="blockquote"></blockquote>
+            <h4 class="text-left">Más resultados... </h4>
+
+            <% for (let movie of extraSearch){ %>
+            <a href="/movie/<%= movie.id %>">
+                <div class="card card-nav-tabs">
+                    <h5 class="card-header card-header-info">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <%= movie.rating %>
+                    </h5>
+                    <div class="card-body">
+                        <h3 class="card-title"> <%= movie.title  %> </h4>
+                            <p class="card-text">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                <%= movie.genre%>
+                                -
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <%= movie.length %> minutos
+                            </p>
+                    </div>
+                </div>
+            </a>
+            <% } %>
+
+        </div>
+    </div>
+</body>
+
+<!-- JS  -->
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/popper.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- paper-kit  -->
+<script src="/javascripts/paper-kit.min.js"></script>
+<!-- paper-kit  -->
+<script src="/javascripts/custom.js"></script>
+
+</html>

@@ -1,6 +1,6 @@
 const db = require('../database/models/index');
-/*const sequelize = db.sequelize;
-const Op = db.Sequelize.Op;*/
+const sequelize = db.sequelize;
+const Op = db.Sequelize.Op;
 const express = require('express');
 const app = express();
 
@@ -45,9 +45,17 @@ const mainController = {
         })
         .then(function(foundMovie){
             myMovie = foundMovie;
-            return res.render('detail', {myMovie})
+            db.Genre.findAll()
+                .then(function (allGenres) {
+                    return res.render('detail', {
+                        myMovie,
+                        allGenres
+                    });
+                })
+                .catch(e => console.log(e));
         })
         .catch(e => console.log(e));
+
     },
 
     delete: function(req, res) {
@@ -82,6 +90,57 @@ const mainController = {
         )
         .then(()=> { return res.redirect("/movie/" + movieId)})
         .catch(e => console.log(e));
+    },
+
+    search: function(req, res) {
+
+        let myQuery = req.query.buscar;
+
+        db.Genre.findAll({
+            where: {
+                name: {
+                    [Op.startsWith]: myQuery
+                }
+            }
+        })
+        .then((genreResult) => {
+            let myGenres = genreResult;
+            db.Movie.findAll({
+                    where: {
+                        title: {
+                            [Op.startsWith]: myQuery
+                        }
+                    },
+                    order: [
+                        ['title', 'DESC']
+                    ],
+                })
+                .then((specific) => {
+                    let mySearch = specific;
+                    db.Movie.findAll({
+                            where: {
+                                title: {
+                                    [Op.substring]: myQuery
+                                }
+                            },
+                            order: [
+                                ['title', 'DESC']
+                            ],
+                        })
+                        .then((moreResults) => {
+                            let extraSearch = moreResults;
+
+                            return res.render('search', {
+                                myGenres,
+                                mySearch,
+                                extraSearch 
+                            })
+                        })
+                        .catch(error => console.log(error));
+                })
+                .catch(error => console.log(error));
+        })
+        .catch(error => console.log(error));
     }
 
 }
