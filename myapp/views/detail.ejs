@@ -56,7 +56,11 @@
                             </span>
                         </h5>
                         <br>
-                        <a href="#" class="badge badge-danger"><%= myMovie.genre.name  %> </a>
+                        <% if (myMovie.genre) { %> 
+                        <a href="/bygenre/<%= myMovie.genre.id %>" class="badge badge-danger"><%= myMovie.genre.name  %> </a>
+                        <% } else {%>
+                            <span class="badge badge-default">Sin genero</span>
+                        <% } %> 
                     </div>
                 </div>
                 <br>
@@ -64,16 +68,15 @@
                 <div class="row text-center">
                     <% for (let actor of myMovie.actors){ %>
                     <div class="col">
-                        
-                        <div class="info">
-                            <i class="fa fa-picture-o" aria-hidden="true" style="width: auto; font-size: 50px;"></i>
-                            <div class="description">
-                                <h4 class="info-title"><%= actor.firstName + ' ' + actor.lastName %></h4>
-                                <p><i class="fa fa-star" aria-hidden="true"></i><%= actor.rating %></p>
-                                <a href="#" class="btn btn-link btn-danger">Ver más</a>
+                        <a href="/byactor/<%= actor.id %>">
+                            <div class="info card">
+                                <i class="fa fa-picture-o" aria-hidden="true" style="width: auto; font-size: 50px;"></i>
+                                <div class="description">
+                                    <h4 class="info-title"><%= actor.firstName + ' ' + actor.lastName %></h4>
+                                    <p><i class="fa fa-star" aria-hidden="true"></i><%= actor.rating %></p>
+                                </div>
                             </div>
-                        </div>
-                        
+                        </a>
                     </div>
                     <% } %>
                 </div>

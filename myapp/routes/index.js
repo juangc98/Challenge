@@ -19,9 +19,9 @@ router.delete('/movie', admin, mainController.delete);
 router.get('/search', mainController.search);
 
 /* GENRES */
-//router.get('/byGenre/:id', mainController.genre);
+router.get('/bygenre/:id', mainController.genre);
 
 /* ACTORS */
-//router.get('/byActor/:id', mainController.actor);
+router.get('/byactor/:id', mainController.actor);
 
 module.exports = router;

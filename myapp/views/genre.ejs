@@ -15,19 +15,11 @@
 
     <%- include('partials/navbar') %>
 
-
     <div class="wrapper">
         <div class="container">
-            <h2>Resultados de tu busqueda: </h2>
+            <h1><%= myGenre.name  %> </h1>
 
-            <div class="generos-box row">
-                <% for (let genre of myGenres){ %>
-                <a href="/bygenre/<%= genre.id %> " class="badge badge-primary"><%= genre.name  %> </a>
-                <% } %>
-            </div>
-            
-
-            <% for (let movie of mySearch){ %>
+            <% for (let movie of myGenre.movies){ %>
             <a href="/movie/<%= movie.id %>">
                 <div class="card card-nav-tabs">
                     <h5 class="card-header card-header-info">
@@ -37,33 +29,6 @@
                     <div class="card-body">
                         <h3 class="card-title"> <%= movie.title  %> </h4>
                             <p class="card-text">
-                                <i class="fa fa-bookmark" aria-hidden="true"></i>
-                                <%= movie.genre%>
-                                -
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                <%= movie.length %> minutos
-                            </p>
-                    </div>
-                </div>
-            </a>
-            <% } %>
-
-            <blockquote class="blockquote"></blockquote>
-            <h4 class="text-left">Más resultados... </h4>
-
-            <% for (let movie of extraSearch){ %>
-            <a href="/movie/<%= movie.id %>">
-                <div class="card card-nav-tabs">
-                    <h5 class="card-header card-header-info">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <%= movie.rating %>
-                    </h5>
-                    <div class="card-body">
-                        <h3 class="card-title"> <%= movie.title  %> </h4>
-                            <p class="card-text">
-                                <i class="fa fa-bookmark" aria-hidden="true"></i>
-                                <%= movie.genre%>
-                                -
                                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                                 <%= movie.length %> minutos
                             </p>

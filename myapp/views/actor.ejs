@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mubis</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/paper-kit.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+    <div class="wrapper">
+
+        <div class="container text-center">
+
+            <div class="row">
+
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h1 class="title"><%= myActor.firstName + ' ' + myActor.lastName  %></h1>
+                    <!--IF USER "ADMIN"-->
+                    <h5 class="description">
+                        <span>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <%= myActor.rating %>
+                        </span>
+                        <span>
+                            <i class="fa fa-video-camera" aria-hidden="true"></i>
+                            <%= myActor.movies.length %>
+                        </span>
+                        <% if (myActor.favorite_movie_id) { %>
+                        <span>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <a class="text-danger" href="/movie/<%= myActor.favoriteMovie.id  %> "><%= myActor.favoriteMovie.title %></a>
+                        </span>
+                        <% } %>
+                    </h5>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="text-left">
+                <% for (let movie of myActor.movies){ %>
+                <a href="/movie/<%= movie.id %>">
+                    <div class="card card-nav-tabs">
+                        <h5 class="card-header card-header-info">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <%= movie.rating %>
+                        </h5>
+                        <div class="card-body">
+                            <h3 class="card-title"> <%= movie.title  %> </h4>
+                                <p class="card-text">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <%= movie.length %> minutos
+                                </p>
+                        </div>
+                    </div>
+                </a>
+                <% } %>
+            </div>
+
+            <!--<a href="#" class="btn btn-primary">Ver trailer</a>-->
+
+
+
+        </div>
+    </div>
+
+    </div>
+
+    
+</body>
+<!-- JS  -->
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/popper.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- paper-kit  -->
+<script src="/javascripts/paper-kit.min.js"></script>
+<!-- paper-kit  
+<script src="/javascripts/custom.js"></script>-->
+
+</html>

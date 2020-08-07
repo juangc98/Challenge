@@ -11,6 +11,7 @@ const mainController = {
             include: ["genre"]
         })
         .then(function(all){
+            //return res.send(all)
             return res.render('index', { all })
         })
         .catch(e => console.log(e));
@@ -141,6 +142,40 @@ const mainController = {
                 .catch(error => console.log(error));
         })
         .catch(error => console.log(error));
+    },
+
+    genre: function(req, res) {
+
+        let myGenre;
+        let myId = req.params.id;
+
+        db.Genre.findByPk(myId, {
+                include: ["movies"]
+            })
+            .then(function (foundGenre) {
+                myGenre = foundGenre;
+                return res.render('genre', {
+                    myGenre
+                });
+            })
+            .catch(e => console.log(e));
+
+    },
+
+    actor: function(req, res) {
+        let myActor;
+        let myId = req.params.id;
+
+        db.Actor.findByPk(myId, {
+            include: ["movies", "favoriteMovie"]
+        })
+        .then(function (foundActor) {
+            myActor = foundActor;
+            return res.render('actor', {
+                myActor
+            });
+        })
+        .catch(e => console.log(e));
     }
 
 }

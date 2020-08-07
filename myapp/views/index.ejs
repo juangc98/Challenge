@@ -27,8 +27,10 @@
             <div class="card-body">
               <h3 class="card-title"> <%= movie.title  %> </h4>
               <p class="card-text">
-                <i class="fa fa-bookmark" aria-hidden="true"></i>
-                <%= movie.genre%>
+                <% if( movie.genre ) { %> 
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>
+                  <%= movie.genre.name %>
+                <% } %> 
                  - 
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <%= movie.length %> minutos         
