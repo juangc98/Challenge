@@ -1,8 +1,6 @@
 const db = require('../database/models/index');
-const sequelize = db.sequelize;
 const Op = db.Sequelize.Op;
-const express = require('express');
-const app = express();
+const {validationResult} = require('express-validator');
 
 const mainController = {
 
@@ -28,14 +26,27 @@ const mainController = {
 
     create: function(req, res) {
 
-        let newMovie = req.body;
-
-        db.Movie.create(newMovie)
-            .then((newOne) => {
-                let movieId = newOne.id;
-                return res.redirect('/movie/' + movieId);
-            })
-            .catch(error => console.log(error))
+        const errors = validationResult(req);
+        
+        if(errors.isEmpty()) {
+            let newMovie = req.body;
+            db.Movie.create(newMovie)
+                .then((newOne) => {
+                    let movieId = newOne.id;
+                    return res.redirect('/movie/' + movieId);
+                })
+                .catch(error => console.log(error))
+        } else {
+            db.Genre.findAll()
+                .then(function (allGenres) {
+                    return res.render('createForm', {
+                        errors: errors.mapped(),
+                        old: req.body,
+                        allGenres
+                    })
+                })
+                .catch(e => console.log(e));
+            }
     },
 
     show: function(req, res) {

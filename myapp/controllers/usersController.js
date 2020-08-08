@@ -11,9 +11,9 @@ const usersController = {
 
     processRegister: function (req, res) {
 
-        //const errors = validationResult(req);
+        const errors = validationResult(req);
 
-        //if (errors.isEmpty()) {
+        if (errors.isEmpty()) {
             let newUser = req.body
             newUser.password = bcryptjs.hashSync(newUser.password, 10);
             delete newUser.password2;
@@ -22,15 +22,12 @@ const usersController = {
                     return res.redirect('/users/login');
                 })
                 .catch((error) => { console.log(error)});
-
-        /*} else {
+        } else {
             return res.render('register', {
                 errors: errors.mapped(),
                 old: req.body
             })
-        }*/
-
-
+        }
     },
 
     login: function (req, res) {

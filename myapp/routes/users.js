@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const usersController = require('../controllers/usersController');
+const validator = require('../middlewares/validator');
 
 /* RUTAS */
 router.get('/register', usersController.register);
-router.post('/register', usersController.processRegister);
+router.post('/register', validator.register, usersController.processRegister);
 
 router.get('/login', usersController.login);
 router.post('/login', usersController.processLogin);

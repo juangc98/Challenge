@@ -5,30 +5,13 @@ const Op = db.Sequelize.Op
 const User = db.User;
 
 module.exports = {
+
     register: [
-        body('name')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('username')
-        .notEmpty().withMessage('Campo obligatorio').bail()
-        .custom(value => {
 
-            return User.findOne({
-                    where: {
-                        username: value
-                    }
-                })
-                .then(user => {
-                    if (user) {
-                        return Promise.reject('El username ya está registrado')
-                    }
-                })
-
-        }),
         body('email')
         .notEmpty().withMessage('Campo obligatorio').bail()
         .isEmail().withMessage('Debes ingresar un email válido').bail()
         .custom(value => {
-
             return User.findOne({
                     where: {
                         email: value
@@ -39,13 +22,14 @@ module.exports = {
                         return Promise.reject('El email ya está registrado')
                     }
                 })
-
         }),
+
         body('password')
         .notEmpty().withMessage('Campo obligatorio').bail()
         .isLength({
             min: 3
         }).withMessage('La contraseña debe tener al menos 3 caracteres'),
+
         body('password2')
         .notEmpty().withMessage('Campo obligatorio').bail()
         .custom((value, {
@@ -54,56 +38,45 @@ module.exports = {
 
     ],
 
-    createProduct: [
-        body('name')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('price')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('ancho')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('alto')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('imageFile')
-        .custom((value, {
-            req
-        }) => req.file).withMessage('Debes ingresar una imagen para tu producto').bail()
-        .custom((value, {
-            req
-        }) => {
+    createMovie: [
+        body('title')
+            .notEmpty().withMessage('Campo obligatorio'),
 
-            if (req.file != undefined) {
-                const acceptedExtensions = ['.jpg', '.jpeg', '.png', '.PNG'];
-                const ext = path.extname(req.file.originalname)
-                return acceptedExtensions.includes(ext);
-            }
-            return true
+        body('rating')
+            .notEmpty().withMessage('Campo obligatorio'),
 
-        }).withMessage('La imagen debe tener uno de los siguientes formatos: JPG, JPEG, PNG'),
+        body('awards')
+            .notEmpty().withMessage('Campo obligatorio'),
+
+        body('releaseDate')
+            .notEmpty().withMessage('Campo obligatorio'),
+
+        body('length')
+            .notEmpty().withMessage('Campo obligatorio'),
+
+        body('genre')
+            .notEmpty().withMessage('Campo obligatorio'),
 
     ],
-    editProduct: [
-        body('name')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('price')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('ancho')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('alto')
-        .notEmpty().withMessage('Campo obligatorio'),
-        body('imageFile')
-        //.custom((value, { req }) => req.file).withMessage('Debes ingresar una imagen para tu producto').bail()
-        .custom((value, {
-            req
-        }) => {
 
-            if (req.file != undefined) {
-                const acceptedExtensions = ['.jpg', '.jpeg', '.png', '.PNG'];
-                const ext = path.extname(req.file.originalname)
-                return acceptedExtensions.includes(ext);
-            }
-            return true
+    editMovie: [
+        body('title')
+            .notEmpty().withMessage('Campo obligatorio'),
 
-        }).withMessage('La imagen debe tener uno de los siguientes formatos: JPG, JPEG, PNG'),
+        body('rating')
+            .notEmpty().withMessage('Campo obligatorio'),
+
+        body('awards')
+            .notEmpty().withMessage('Campo obligatorio'),
+
+        body('releaseDate')
+            .notEmpty().withMessage('Campo obligatorio'),
+
+        body('length')
+            .notEmpty().withMessage('Campo obligatorio'),
+
+        body('genre_id')
+            .notEmpty().withMessage('Campo obligatorio'),
 
     ],
 

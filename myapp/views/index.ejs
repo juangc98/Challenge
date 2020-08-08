@@ -21,16 +21,17 @@
         <a href="/movie/<%= movie.id %>">
           <div class="card card-nav-tabs">
             <h5 class="card-header card-header-info">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <%= movie.rating %> 
+              <% if (movie.genre) { %>
+                <i class="fa fa-bookmark" aria-hidden="true"></i> <%= movie.genre.name  %> 
+                <% } else {%>
+                <span class="badge badge-default">Sin genero</span>
+              <% } %>
             </h5>
             <div class="card-body">
               <h3 class="card-title"> <%= movie.title  %> </h4>
               <p class="card-text">
-                <% if( movie.genre ) { %> 
-                  <i class="fa fa-bookmark" aria-hidden="true"></i>
-                  <%= movie.genre.name %>
-                <% } %> 
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <%= movie.rating %>
                  - 
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <%= movie.length %> minutos         

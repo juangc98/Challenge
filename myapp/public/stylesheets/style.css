@@ -15,6 +15,26 @@ a {
 
 /*BODY*/
 
+.input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.input-icons i {
+  position: absolute;
+}
+
+.icon {
+  padding: 10px;
+  min-width: 40px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  padding-left: 35px;
+}
+
 .error-msg {
   color: red;
 }

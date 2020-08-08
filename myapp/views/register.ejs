@@ -22,17 +22,35 @@
             <h1 class="text-center">Registrate y sé parte</h1>
             <blockquote></blockquote>
             <form action="/users/register" method="POST">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="email" placeholder="Dirección de correo electronico"
-                        name="email">
+                <div class="form-group input-icons">
+                    <i class="fa fa-envelope icon" aria-hidden="true"></i>
+                    <input type="email" class="form-control input-field" id="email" placeholder="Dirección de correo electronico"
+                    name="email" <% if(typeof old != "undefined"){%> value="<%= old.email %> " <% } %>>
+                    <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.email != "undefined"){ %>
+                            <small class="form-text error-msg"><%= errors.email.msg %></small>
+                        <% } %>
+                    <% } %>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
+                    <div class="form-group col-md-6 input-icons">
+                        <i class="fa fa-unlock-alt icon" aria-hidden="true"></i>
+                        <input type="password" class="form-control input-field" id="password" placeholder="Contraseña" name="password">
+                        <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.password != "undefined"){ %>
+                        <small class="form-text error-msg"><%= errors.password.msg %></small>
+                        <% } %>
+                        <% } %>
                     </div>
-                    <div class="form-group col-md-6">
-                        <input type="password" class="form-control" id="password2" placeholder="Repetí tu contraseña"
+                    <div class="form-group col-md-6 input-icons">
+                        <i class="fa fa-unlock-alt icon" aria-hidden="true"></i>
+                        <input type="password" class="form-control input-field" id="password2" placeholder="Repetí tu contraseña"
                             name="password2">
+                        <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.password2 != "undefined"){ %>
+                        <small class="form-text error-msg"><%= errors.password2.msg %></small>
+                        <% } %>
+                        <% } %>
                     </div>
                 </div>
 

@@ -31,8 +31,9 @@
                             </button>
                             <form action="/movie?_method=DELETE" method="post" style="display: inline;">
                                 <input type="hidden" name="movieId" value="<%= myMovie.id %>">
-                                <button type="submit" class="btn btn-info btn-just-icon">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                <button type="submit" class="btn btn-info btn-just-icon"
+                                    onclick="return confirm('¿Estas seguro que queres eliminar esta pelicula?');">
+                                    <i class="fa fa-trash-o" aria-hidden="true" ></i>
                                 </button>
                             </form>
                         </div>
@@ -57,7 +58,10 @@
                         </h5>
                         <br>
                         <% if (myMovie.genre) { %> 
-                        <a href="/bygenre/<%= myMovie.genre.id %>" class="badge badge-danger"><%= myMovie.genre.name  %> </a>
+                        <a href="/bygenre/<%= myMovie.genre.id %>" class="badge badge-danger">
+                            <i class="fa fa-bookmark" aria-hidden="true"></i>
+                            <%= myMovie.genre.name %>
+                        </a>
                         <% } else {%>
                             <span class="badge badge-default">Sin genero</span>
                         <% } %> 

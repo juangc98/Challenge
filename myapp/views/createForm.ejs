@@ -21,38 +21,77 @@
         <h2 class="text-center">Agregá una pelicula</h2>
         <form action="/new" method="post">
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Titulo">
+                <div class="form-group col-md-12 input-icons">
+                    <i class="fa fa-film icon" aria-hidden="true"></i>
+                    <input type="text" class="form-control input-field" id="title" name="title" placeholder="Titulo"
+                    <% if(typeof old != "undefined"){%> value="<%= old.title %> " <% } %> >
+                    <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.title != "undefined"){ %>
+                            <small class="form-text error-msg"><%= errors.title.msg %></small>
+                        <% } %>
+                    <% } %>    
                 </div>
-                <div class="form-group col-md-6">
+                <!--<div class="form-group col-md-6">
                     <input type="text" class="form-control" id="trailer" name="trailer" placeholder="Link al trailer">
-                </div>
+                </div>-->
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="number" class="form-control" placeholder="Premios" id="awards" name="awards" min="0">
+                <div class="form-group col-md-4 input-icons">
+                    <i class="fa fa-trophy icon" aria-hidden="true"></i>
+                    <input type="number" class="form-control input-field" placeholder="Premios" id="awards" name="awards" min="0"
+                    <% if(typeof old != "undefined"){%> value="<%= old.awards %> " <% } %>>
+                    <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.awards != "undefined"){ %>
+                            <small class="form-text error-msg"><%= errors.awards.msg %></small>
+                        <% } %>
+                    <% } %>
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="number" class="form-control" id="rating" placeholder="Rating" name="rating" min="0.0"
-                        max="10.0" step="0.1">
+                <div class="form-group col-md-4 input-icons">
+                    <i class="fa fa-star icon" aria-hidden="true"></i>
+                    <input type="number" class="form-control input-field" id="rating" placeholder="Rating" name="rating" min="0.0"
+                    max="10.0" step="0.1" <% if(typeof old != "undefined"){%> value="<%= old.rating %> " <% } %>>
+                    <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.rating != "undefined"){ %>
+                            <small class="form-text error-msg"><%= errors.rating.msg %></small>
+                        <% } %>
+                    <% } %>
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="number" class="form-control" id="length" placeholder="Duración en minutos"
-                        name="length" min="0">
+                <div class="form-group col-md-4 input-icons">
+                    <i class="fa fa-clock-o icon" aria-hidden="true"></i>
+                    <input type="number" class="form-control input-field" id="length" placeholder="Duración en minutos"
+                    name="length" min="0" <% if(typeof old != "undefined"){%> value="<%= old.length %> " <% } %>>
+                    <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.length != "undefined"){ %>
+                            <small class="form-text error-msg"><%= errors.length.msg %></small>
+                        <% } %>
+                    <% } %>
                 </div>
             </div>
             <div class="form-row">
                 <!-- input with datetimepicker -->
-                <div class="form-group col-md-5">
-                    <input type="string" class="form-control datetimepicker" placeholder="05/08/2020" id="releaseDate" name="releaseDate" />
+                <div class="form-group col-md-5 input-icons">
+                    <i class="fa fa-calendar-check-o icon" aria-hidden="true"></i>
+                    <input type="string" class="form-control input-field" placeholder="05/08/2020" id="releaseDate" name="releaseDate" 
+                    <% if(typeof old != "undefined"){%> value="<%= old.releaseDate %> " <% } %> />
+                    <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.releaseDate != "undefined"){ %>
+                            <small class="form-text error-msg"><%= errors.releaseDate.msg %></small>
+                        <% } %>
+                    <% } %>
                 </div>
-                <div class="form-group col-md-5">
-                     <select id="genre" class="form-control" name="genre">
-                         <option selected>Género...</option>
-                         <% for(let e of allGenres){ %> 
-                            <option value="<%= e.id %>"><%= e.name  %> </option>
-                         <% } %> 
-                     </select>
+                <div class="form-group col-md-5 input-icons">
+                    <i class="fa fa-bookmark icon" aria-hidden="true"></i>
+                    <select id="genre" class="form-control input-field" name="genre">
+                        <option selected>Género...</option>
+                        <% for(let e of allGenres){ %> 
+                           <option value="<%= e.id %>"><%= e.name  %> </option>
+                        <% } %> 
+                    </select>
+                    <% if(typeof errors != "undefined"){ %>
+                        <% if(typeof errors.genre != "undefined"){ %>
+                            <small class="form-text error-msg"><%= errors.genre.msg %></small>
+                        <% } %>
+                    <% } %>
                 </div>
                 <div class="text-center col-md-2">
                     <button type="submit" class="btn btn-primary">Crear</button>
