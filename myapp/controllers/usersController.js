@@ -52,6 +52,7 @@ const usersController = {
                              maxAge: 1000 * 60 * 60 * 24
                          })
                      }
+                     //console.log(req.session.user);
                      return res.redirect('/');
                  } else {
                      return res.render('login', {

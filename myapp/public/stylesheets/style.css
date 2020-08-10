@@ -9,11 +9,23 @@ a {
 
 /*NAVBAR*/
 
+nav.navbar {
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  position: fixed;
+}
+
 .navbar-nav li form {
   margin-top: 5%;
 }
 
 /*BODY*/
+
+div.wrapper {
+  margin-top: 20%;
+}
 
 .input-icons {
   width: 100%;
@@ -71,7 +83,18 @@ h5.description {
 }
 
 @media (min-width: 640px) {
+
+  div.wrapper {
+    margin-top: 12%;
+  }
+
   h5.description {
     flex-direction: row;
+  }
+}
+
+@media (min-width: 992px){
+  div.wrapper {
+    margin-top: 6%;
   }
 }

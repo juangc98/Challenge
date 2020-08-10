@@ -91,17 +91,37 @@ const mainController = {
 
     edit: function(req, res) {
 
+        const errors = validationResult(req);
         let movieId = req.body.movieId;
-
         let newData = req.body;
 
-        db.Movie.update(
-            newData, {
-                where: {id: movieId}
-            }
-        )
-        .then(()=> { return res.redirect("/movie/" + movieId)})
-        .catch(e => console.log(e));
+        if (errors.isEmpty()) {       
+            db.Movie.update(
+                newData, {
+                    where: {id: movieId}
+                }
+            )
+            .then(()=> { return res.redirect("/movie/" + movieId)})
+            .catch(e => console.log(e));
+        } else {
+            db.Movie.findByPk(movieId, {
+                    include: ["actors", "genre"]
+                })
+                .then(function (foundMovie) {
+                    myMovie = foundMovie;
+                    db.Genre.findAll()
+                        .then(function (allGenres) {
+                            return res.render('detail', {
+                                myMovie,
+                                allGenres,
+                                errors: errors.mapped(),
+                                old: newData
+                            });
+                        })
+                        .catch(e => console.log(e));
+                })
+                .catch(e => console.log(e));
+        }
     },
 
     search: function(req, res) {
