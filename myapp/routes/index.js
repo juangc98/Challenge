@@ -4,14 +4,14 @@ const mainController = require('../controllers/mainController');
 const admin = require('../middlewares/admin');
 const validator = require('../middlewares/validator');
 
-/* HOME PAGE */
+/* HOME */
 router.get('/', mainController.index);
 
-/* Create new movie */
+/* Creación de nueva pelicula */
 router.get('/new', admin, mainController.formNew);
 router.post('/new', admin, validator.createMovie, mainController.create);
 
-/* MOVIE DETAIL */
+/* Detalle de pelicula */
 router.get('/movie/:id', mainController.show);
 router.put('/movie', admin, validator.editMovie, mainController.edit);
 router.delete('/movie', admin, mainController.delete);
@@ -19,10 +19,10 @@ router.delete('/movie', admin, mainController.delete);
 /* BUSQUEDA*/
 router.get('/search', mainController.search);
 
-/* GENRES */
+/* by GENRE */
 router.get('/bygenre/:id', mainController.genre);
 
-/* ACTORS */
+/* by ACTOR */
 router.get('/byactor/:id', mainController.actor);
 
 module.exports = router;

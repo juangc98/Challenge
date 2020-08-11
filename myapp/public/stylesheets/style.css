@@ -82,6 +82,11 @@ h5.description {
   flex-direction: column;
 }
 
+/*--------------------*/
+/*---MEDIA QUERIES----*/
+/*   (mobile first)   */
+/*--------------------*/
+
 @media (min-width: 640px) {
 
   div.wrapper {
