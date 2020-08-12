@@ -7,6 +7,10 @@ const validator = require('../middlewares/validator');
 /* HOME */
 router.get('/', mainController.index);
 
+/* Las mejores / Ultimos estrenos */
+router.get('/top10', mainController.ranking);
+router.get('/premieres', mainController.premieres);
+
 /* Creación de nueva pelicula */
 router.get('/new', admin, mainController.formNew);
 router.post('/new', admin, validator.createMovie, mainController.create);

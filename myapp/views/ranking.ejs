@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> MUBIS | Inicio </title>
+    <title> MUBIS | TOP 10 </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -15,23 +15,23 @@
 
     <div class="wrapper">
       <div class="container">
-        <h1>Mubis </h1>
+        <h1> TOP 10 </h1>
   
         <% for (let movie of all){ %> 
         <a href="/movie/<%= movie.id %>">
           <div class="card card-nav-tabs">
             <h5 class="card-header card-header-info">
-              <% if (movie.genre) { %>
-                <i class="fa fa-bookmark" aria-hidden="true"></i> <%= movie.genre.name  %> 
-                <% } else {%>
-                <span class="badge badge-default">Sin genero</span>
-              <% } %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <%= movie.rating %>
             </h5>
             <div class="card-body">
               <h3 class="card-title"> <%= movie.title  %> </h4>
               <p class="card-text">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <%= movie.rating %>
+                <% if (movie.genre) { %>
+                <i class="fa fa-bookmark" aria-hidden="true"></i> <%= movie.genre.name  %>
+                <% } else {%>
+                <span class="badge badge-default">Sin genero</span>
+                <% } %>
                  - 
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <%= movie.length %> minutos         

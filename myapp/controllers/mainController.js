@@ -207,7 +207,47 @@ const mainController = {
             });
         })
         .catch(e => console.log(e));
+    },
+
+    ranking: function (req, res) {
+
+        db.Movie.findAll({
+            limit: 10,
+            order: [['rating', 'DESC']],
+            include: ["genre"]
+            })
+            .then(function (all) {
+                //return res.send(all)
+                return res.render('ranking', {
+                    all
+                })
+            })
+            .catch(e => console.log(e));
+
+    },
+
+    premieres: function (req, res) {
+
+        db.Movie.findAll({
+                limit: 10,
+                order: [
+                    ['releaseDate', 'DESC']
+                ],
+                include: ["genre"]
+            })
+            .then(function (all) {
+                //return res.send(all)
+                return res.render('premieres', {
+                    all
+                })
+            })
+            .catch(e => console.log(e));
+
     }
+
+
+
+
 
 }
 
